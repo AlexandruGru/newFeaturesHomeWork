@@ -27,7 +27,7 @@ inputDate.addEventListener("change", (ev) => {
 });
 
 // ----------------------ex3----------------------
-// i don't have much experience in js or other programming languages to decide what to add to js, 
+// i don't have much experience in js or other programming languages to prpose something to add to js, 
 // but i'm sure there is a lot of sintactic sugar to add.
-// the DOM operations are heavy and expensive(computer resourses) to execute, 
+// the DOM operations are heavy and expensive to execute, 
 // may be there is needed to improve this aspects
