@@ -8,22 +8,27 @@ console.log(duplicates([1, 2, 3, 4]));
 console.log(duplicates([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]));
 
 // ----------------------ex2----------------------
+// to add banner with message that timer is finished
 import { Temporal } from "@js-temporal/polyfill";
 
 const htmlTime = document.querySelector(".time");
 const inputDate = document.querySelector(".input-date");
+const submitTime = document.querySelector(".submitTime")
 
-inputDate.addEventListener("change", (ev) => {
-  const hours = ev.target.value.slice(0, 2);
-  const minutes = ev.target.value.slice(3, 5);
+submitTime.addEventListener("click", (ev) => {
+  ev.preventDefault()
+  const hours = inputDate.value.slice(0, 2);
+  const minutes = inputDate.value.slice(3, 5);
   const settedTime = new Temporal.PlainTime(hours, minutes);
-  const setTimeUntil = () => {
+  const timer = setInterval(() => {
     let now = Temporal.Now.plainTimeISO().round("seconds");
     let until = now.until(settedTime);
-    htmlTime.textContent = `Till the setted time remain: ${until.hours} hours ${until.minutes} minutes ${until.seconds} seconds`;
-    setTimeout(setTimeUntil, 500);
-  };
-  setTimeUntil();
+    htmlTime.textContent = `Till the setted time remains: ${until.hours}:${until.minutes}:${until.seconds}`;
+    if (until.sign === 0 || until.sign === -1) {
+      htmlTime.textContent = "You've reache the setted time";
+      window.clearInterval(timer)
+    }
+  }, 1000);
 });
 
 // ----------------------ex3----------------------
